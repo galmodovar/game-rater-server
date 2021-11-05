@@ -1,0 +1,30 @@
+[
+    {
+        "model": "raterapi.games",
+        "pk": 1,
+        "fields": {
+            "rater": 1,
+            "title": "Dungeons and Dragons",
+            "description": "This is the game description",
+            "designer": "D&D Designer",
+            "year_released": 3000,
+            "num_of_players": 4,
+            "est_time_to_play": 5,
+            "recommended_age": 12
+        }
+    },
+    {
+        "model": "raterapi.games",
+        "pk": 2,
+        "fields": {
+            "rater": 1,
+            "title": "Monopoly",
+            "description": "This is the game description",
+            "designer": "Monopoly Designer",
+            "year_released": 2999,
+            "num_of_players": 6,
+            "est_time_to_play": 5,
+            "recommended_age": 12
+        }
+    }
+]
