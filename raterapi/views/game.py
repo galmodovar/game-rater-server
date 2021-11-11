@@ -6,7 +6,8 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from raterapi.models import Games, Rater
+from raterapi.models import Games, Rater, Reviews, reviews
+from raterapi.models.game_ratings import GameRatings
 
 class GameView(ViewSet):
     """Game Rater Games"""
@@ -122,6 +123,29 @@ class RaterSerializer(serializers.ModelSerializer):
         model = Rater
         fields = ('id', 'user')
 
+class ReviewSerializer(serializers.ModelSerializer):
+    """JSON serializer for games
+
+    Arguments:
+        serializer type
+    """
+    
+    class Meta:
+        model = Reviews
+        fields = ('id', 'game', 'rater', 'review', 'created_on')
+
+class RatingSerializer(serializers.ModelSerializer):
+    """JSON serializer for games
+
+    Arguments:
+        serializer type
+    """
+    
+    class Meta:
+        model = GameRatings
+        fields = ('id', 'game', 'rater', 'rating')
+    
+
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games
 
@@ -129,7 +153,8 @@ class GameSerializer(serializers.ModelSerializer):
         serializer type
     """
     rater = RaterSerializer()
+    reviews = ReviewSerializer(many=True, required=None)
     class Meta:
         model = Games
-        fields = ('id', 'rater', 'title', 'description', 'designer', 'year_released', 'num_of_players', 'est_time_to_play', 'recommended_age')
+        fields = ('id', 'rater', 'title', 'description', 'designer', 'year_released', 'num_of_players', 'est_time_to_play', 'recommended_age', 'reviews', 'average_rating')
 
